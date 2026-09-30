@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Biantali – Technisches Onboarding</title>
+<style>
+:root{--bg:#f5f7f5;--card:#fff;--ink:#1d2923;--muted:#68746d;--line:#dce4df;--green:#2e6650;--dark:#173c2f;--soft:#eef3ef;--red:#9a4444}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.wrap{max-width:980px;margin:auto;padding:28px 18px 70px}.hero{background:linear-gradient(135deg,var(--dark),var(--green));color:white;padding:34px;border-radius:24px;margin-bottom:20px}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:.76rem;opacity:.72}.hero h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.4rem 0 .8rem}.hero p{max-width:760px;color:#edf4f0}
+.note{margin-top:18px;padding:14px 16px;border:1px solid rgba(255,255,255,.22);border-radius:13px;background:rgba(255,255,255,.08)}
+.toolbar{position:sticky;top:0;z-index:10;background:rgba(245,247,245,.94);backdrop-filter:blur(8px);padding:10px 0 13px}.toolrow{display:flex;gap:12px;align-items:center}.progressbox{flex:1}.plabel{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-bottom:5px}.progress{height:9px;background:#dfe7e1;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--green)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:white;border:1px solid var(--line);color:var(--ink)}.danger{background:white;border:1px solid #ecc;color:var(--red)}
+.section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:25px;margin:17px 0;box-shadow:0 8px 25px rgba(32,48,40,.04)}.head{display:flex;gap:13px;margin-bottom:18px}.num{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--soft);font-weight:800;color:var(--dark);flex:0 0 34px}.head h2{margin:2px 0 4px;font-size:1.35rem}.head p{margin:0;color:var(--muted);font-size:.93rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{margin-bottom:15px}.full{grid-column:1/-1}label,legend{font-weight:700;display:block;margin-bottom:6px}.req:after{content:" *";color:var(--red)}
+input,textarea,select{width:100%;border:1px solid #cdd8d1;border-radius:10px;padding:12px 13px;background:white;color:var(--ink);font:inherit}textarea{min-height:100px;resize:vertical}input:focus,textarea:focus,select:focus{outline:3px solid rgba(46,102,80,.09);border-color:var(--green)}
+fieldset{border:0;padding:0;margin:0 0 16px}.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.option{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fbfcfb;font-weight:500}.option input{width:auto;margin-top:4px}
+.drive{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:18px;border-radius:14px;background:var(--soft);border:1px solid #d8e3db;margin-bottom:16px}.drive p{margin:4px 0 0;color:var(--muted);font-size:.88rem;word-break:break-word}.info{padding:13px 15px;border-left:4px solid var(--green);background:#f5f8f6;border-radius:8px;margin:12px 0 18px;font-size:.92rem}
+.finish{background:var(--dark);color:white;padding:24px;border-radius:18px;margin-top:20px}.finish p{color:#dbe7e1}.finish .secondary{border:0}.privacy{font-size:.86rem;opacity:.78;margin-top:12px}.footer{text-align:center;color:var(--muted);font-size:.84rem;margin-top:20px}
+#print-root{display:none}
+@media(max-width:720px){.grid,.options,.drive{grid-template-columns:1fr}.toolrow{display:block}.actions{margin-top:10px}.actions .btn{flex:1}.section{padding:20px 16px}.hero{padding:25px 20px}}
+@media print{
+@page{size:A4;margin:15mm}body{background:#fff;color:#111;font-family:Arial,sans-serif}.wrap,.toolbar{display:none!important}#print-root{display:block!important}
+.ph{border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:17px}.ph h1{font-size:21pt;margin:0 0 5px}.meta{font-size:9pt;color:#444;line-height:1.45}
+.ps{margin-bottom:17px;break-inside:avoid}.ps h2{font-size:13pt;border-bottom:1px solid #bbb;padding-bottom:5px;margin:0 0 9px}.pi{margin:0 0 8px;break-inside:avoid}.pq{font-size:8.8pt;font-weight:700}.pa{font-size:10pt;white-space:pre-wrap;overflow-wrap:anywhere}.empty{color:#777;font-style:italic}.pf{border-top:1px solid #bbb;margin-top:17px;padding-top:7px;font-size:8pt;color:#555}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+<div class="eyebrow">Biantali · Website Relaunch</div>
+<h1>Technisches Onboarding</h1>
+<p>Bitte tragt hier nur die technischen Informationen und Unterlagen zusammen, die wir für Vorbereitung, Umsetzung und spätere Liveschaltung der neuen Website benötigen.</p>
+<div class="note"><strong>Wichtig:</strong> Bitte keine Passwörter, TANs, Zugangscodes oder andere geheime Zugangsdaten eintragen. Wir klären nur, welche Zugänge vorhanden sind und wer sie verwaltet. Die sichere Übergabe erfolgt separat.</div>
+</header>
+
+<div class="toolbar"><div class="toolrow">
+<div class="progressbox"><div class="plabel"><span>Fortschritt</span><strong id="pt">0 %</strong></div><div class="progress"><span id="pb"></span></div></div>
+<div class="actions"><button class="btn secondary" id="save" type="button">Zwischenspeichern</button><button class="btn primary" id="pdf" type="button">PDF erstellen</button></div>
+</div></div>
+
+<form id="form">
+
+<section class="section" data-section="Projektbasis"><div class="head"><div class="num">1</div><div><h2>Projektbasis</h2><p>Grunddaten für technische Rückfragen.</p></div></div>
+<div class="grid">
+<div class="field"><label class="req">Unternehmen / Vermieter</label><input name="company" value="Biantali" data-label="Unternehmen / Vermieter" required></div>
+<div class="field"><label class="req">Technischer Hauptansprechpartner</label><input name="contact" data-label="Technischer Hauptansprechpartner" required></div>
+<div class="field"><label class="req">E-Mail-Adresse</label><input type="email" name="email" data-label="E-Mail-Adresse" required></div>
+<div class="field"><label>Telefonnummer</label><input name="phone" data-label="Telefonnummer"></div>
+<div class="field full"><label class="req">Aktuelle Website</label><input type="url" name="site" value="https://www.biantali.de" data-label="Aktuelle Website" required></div>
+</div></section>
+
+<section class="section" data-section="Domain und DNS"><div class="head"><div class="num">2</div><div><h2>Domain & DNS</h2><p>Bei Bedarf bitte beim bisherigen Anbieter oder Dienstleister nachfragen.</p></div></div>
+<div class="grid">
+<div class="field"><label class="req">Gewünschte Hauptdomain</label><input name="domain" value="biantali.de" data-label="Gewünschte Hauptdomain" required></div>
+<div class="field"><label>Wo ist die Domain registriert?</label><input name="registrar" placeholder="z. B. IONOS, STRATO, ALL-INKL ..." data-label="Domain-Registrar / Anbieter"></div>
+<div class="field"><label>Wer besitzt / verwaltet den Domainvertrag?</label><input name="domain_owner" data-label="Verantwortlicher Domainvertrag"></div>
+<div class="field"><label>Wer hat Zugriff auf die Domainverwaltung?</label><input name="domain_access" data-label="Zugriff Domainverwaltung"></div>
+<div class="field full"><label>Weitere Domains, Subdomains oder Weiterleitungen</label><textarea name="other_domains" data-label="Weitere Domains / Subdomains / Weiterleitungen"></textarea></div>
+<div class="field full"><label>Bekannte Besonderheiten bei Domain / DNS</label><textarea name="dns_notes" data-label="Besonderheiten Domain / DNS"></textarea></div>
+</div></section>
+
+<section class="section" data-section="Hosting und bestehende Website"><div class="head"><div class="num">3</div><div><h2>Hosting & bestehende Website</h2><p>Webspace, CMS und bisherige technische Betreuung.</p></div></div>
+<div class="grid">
+<div class="field"><label>Hosting-Anbieter</label><input name="hosting" data-label="Hosting-Anbieter"></div>
+<div class="field"><label>Wer besitzt / bezahlt den Hostingvertrag?</label><input name="hosting_owner" data-label="Verantwortlicher Hostingvertrag"></div>
+<div class="field"><label>Wer hat administrativen Hosting-Zugriff?</label><input name="hosting_access" data-label="Administrativer Hosting-Zugriff"></div>
+<div class="field"><label>Aktuelles Website-System</label><select name="cms" data-label="Aktuelles Website-System"><option value="">Bitte auswählen</option><option>WordPress</option><option>Homepage-Baukasten</option><option>Individuell programmiert</option><option>Anderes CMS</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Wer hat die aktuelle Website erstellt / betreut?</label><input name="old_provider" data-label="Bisheriger Website-Dienstleister"></div>
+<div class="field"><label>Administrativer Website-Zugang vorhanden?</label><select name="cms_access" data-label="Administrativer Website-Zugang"><option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option><option>Unbekannt</option></select></div>
+<div class="field full"><label>Gibt es Backups / Dateien der bisherigen Website?</label><textarea name="backups" data-label="Backups / Dateien der bisherigen Website"></textarea></div>
+<div class="field full"><label>Laufen über das Hosting weitere Websites oder Dienste?</label><textarea name="hosting_other" data-label="Weitere Websites / Dienste auf Hosting"></textarea></div>
+</div></section>
+
+<section class="section" data-section="E-Mail-System"><div class="head"><div class="num">4</div><div><h2>E-Mail-System</h2><p>Damit Domain- oder DNS-Arbeiten bestehende Postfächer nicht beeinträchtigen.</p></div></div>
+<div class="grid">
+<div class="field"><label>E-Mail-Anbieter</label><input name="mail_provider" data-label="E-Mail-Anbieter"></div>
+<div class="field"><label>Wer verwaltet die E-Mail-Konten?</label><input name="mail_admin" data-label="Verantwortlicher E-Mail-Konten"></div>
+<div class="field full"><label>Welche E-Mail-Adressen unter @biantali.de existieren?</label><textarea name="mail_addresses" placeholder="Bitte nur Adressen – keine Passwörter." data-label="Bestehende E-Mail-Adressen"></textarea></div>
+<div class="field"><label>Müssen alle bestehenden Postfächer unverändert weiterlaufen?</label><select name="mail_keep" data-label="Bestehende Postfächer unverändert weiterführen"><option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Laufen Website und E-Mail beim gleichen Anbieter?</label><select name="mail_same" data-label="Website und E-Mail gleicher Anbieter"><option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option><option>Unbekannt</option></select></div>
+</div></section>
+
+<section class="section" data-section="Buchungssystem und Portale"><div class="head"><div class="num">5</div><div><h2>Buchungssystem & Portale</h2><p>Informationen für die spätere Anbindung des bestehenden Systems.</p></div></div>
+<div class="grid">
+<div class="field"><label class="req">Name des Buchungs- / Belegungssystems</label><input name="booking_system" data-label="Buchungs- / Belegungssystem" required></div>
+<div class="field"><label>Anbieter / Hersteller</label><input name="booking_provider" data-label="Anbieter Buchungssystem"></div>
+<div class="field"><label>Website oder Login-Seite des Anbieters</label><input type="url" name="booking_url" data-label="URL Buchungssystem"></div>
+<div class="field"><label>Wer besitzt / verwaltet den Vertrag?</label><input name="booking_owner" data-label="Verantwortlicher Buchungssystem"></div>
+<div class="field"><label>Wer hat Administratorrechte?</label><input name="booking_admin" data-label="Administrator Buchungssystem"></div>
+<div class="field"><label>Link zur technischen Dokumentation</label><input type="url" name="booking_docs" data-label="Technische Dokumentation Buchungssystem"></div>
+</div>
+<fieldset><legend>Welche Funktionen werden aktuell genutzt?</legend><div class="options">
+<label class="option"><input type="checkbox" name="booking_features" value="Belegungskalender" data-label="Genutzte Funktionen Buchungssystem">Belegungskalender</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Buchungsanfragen" data-label="Genutzte Funktionen Buchungssystem">Buchungsanfragen</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Direktbuchungen" data-label="Genutzte Funktionen Buchungssystem">Direktbuchungen</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Preisberechnung" data-label="Genutzte Funktionen Buchungssystem">Preisberechnung</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Saisonpreise" data-label="Genutzte Funktionen Buchungssystem">Saisonpreise</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Automatische E-Mails" data-label="Genutzte Funktionen Buchungssystem">Automatische E-Mails</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Zahlungsabwicklung" data-label="Genutzte Funktionen Buchungssystem">Zahlungsabwicklung</label>
+<label class="option"><input type="checkbox" name="booking_features" value="Portal-Synchronisation" data-label="Genutzte Funktionen Buchungssystem">Portal-Synchronisation</label>
+</div></fieldset>
+<fieldset><legend>Welche Buchungsportale werden genutzt?</legend><div class="options">
+<label class="option"><input type="checkbox" name="portals" value="Booking.com" data-label="Genutzte Buchungsportale">Booking.com</label>
+<label class="option"><input type="checkbox" name="portals" value="Airbnb" data-label="Genutzte Buchungsportale">Airbnb</label>
+<label class="option"><input type="checkbox" name="portals" value="FeWo-direkt" data-label="Genutzte Buchungsportale">FeWo-direkt</label>
+<label class="option"><input type="checkbox" name="portals" value="Traum-Ferienwohnungen" data-label="Genutzte Buchungsportale">Traum-Ferienwohnungen</label>
+<label class="option"><input type="checkbox" name="portals" value="Regionale Portale" data-label="Genutzte Buchungsportale">Regionale Portale</label>
+<label class="option"><input type="checkbox" name="portals" value="Keine" data-label="Genutzte Buchungsportale">Keine</label>
+</div></fieldset>
+<div class="grid">
+<div class="field"><label>Wie werden Verfügbarkeiten synchronisiert?</label><select name="sync" data-label="Synchronisation Verfügbarkeiten"><option value="">Bitte auswählen</option><option>Automatisch</option><option>iCal</option><option>API</option><option>Manuell</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Bekannte Integrationsmöglichkeit</label><select name="integration" data-label="Integrationsmöglichkeit Buchungssystem"><option value="">Bitte auswählen</option><option>API</option><option>Plugin</option><option>Widget</option><option>iFrame</option><option>Buchungslink</option><option>Mehrere Möglichkeiten</option><option>Unbekannt</option></select></div>
+<div class="field full"><label>Weitere technische Hinweise zum Buchungssystem</label><textarea name="booking_notes" data-label="Weitere Hinweise Buchungssystem"></textarea></div>
+</div></section>
+
+<section class="section" data-section="Google-Dienste und Tracking"><div class="head"><div class="num">6</div><div><h2>Google-Dienste & Tracking</h2><p>Bitte nur Bestand und Zugriffsverantwortliche erfassen.</p></div></div>
+<div class="grid">
+<div class="field"><label>Google Unternehmensprofil</label><select name="gbp" data-label="Google Unternehmensprofil"><option value="">Bitte auswählen</option><option>Vorhanden</option><option>Nicht vorhanden</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Wer hat Zugriff?</label><input name="gbp_owner" data-label="Zugriff Google Unternehmensprofil"></div>
+<div class="field full"><label>Link zum Google Unternehmensprofil</label><input type="url" name="gbp_url" data-label="Link Google Unternehmensprofil"></div>
+<div class="field"><label>Google Search Console</label><select name="gsc" data-label="Google Search Console"><option value="">Bitte auswählen</option><option>Vorhanden</option><option>Nicht vorhanden</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Wer hat Zugriff?</label><input name="gsc_owner" data-label="Zugriff Google Search Console"></div>
+<div class="field"><label>Google Analytics / Statistik</label><select name="analytics" data-label="Google Analytics / Statistik"><option value="">Bitte auswählen</option><option>GA4 vorhanden</option><option>Anderes System vorhanden</option><option>Nicht vorhanden</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Wer hat Zugriff?</label><input name="analytics_owner" data-label="Zugriff Analytics"></div>
+<div class="field"><label>Google Tag Manager</label><select name="gtm" data-label="Google Tag Manager"><option value="">Bitte auswählen</option><option>Vorhanden</option><option>Nicht vorhanden</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Wer hat Zugriff?</label><input name="gtm_owner" data-label="Zugriff Google Tag Manager"></div>
+</div></section>
+
+<section class="section" data-section="Weitere externe Dienste"><div class="head"><div class="num">7</div><div><h2>Weitere externe Dienste</h2><p>Markiert bitte, was aktuell mit Website oder Vermietung verbunden ist.</p></div></div>
+<fieldset><legend>Verwendete Dienste</legend><div class="options">
+<label class="option"><input type="checkbox" name="services" value="Meta / Facebook Pixel" data-label="Externe Dienste">Meta / Facebook Pixel</label>
+<label class="option"><input type="checkbox" name="services" value="Facebook" data-label="Externe Dienste">Facebook</label>
+<label class="option"><input type="checkbox" name="services" value="Instagram" data-label="Externe Dienste">Instagram</label>
+<label class="option"><input type="checkbox" name="services" value="Newsletter-System" data-label="Externe Dienste">Newsletter-System</label>
+<label class="option"><input type="checkbox" name="services" value="Google Maps" data-label="Externe Dienste">Google Maps</label>
+<label class="option"><input type="checkbox" name="services" value="YouTube / Video" data-label="Externe Dienste">YouTube / Video</label>
+<label class="option"><input type="checkbox" name="services" value="Bewertungsplattform" data-label="Externe Dienste">Bewertungsplattform</label>
+<label class="option"><input type="checkbox" name="services" value="WhatsApp" data-label="Externe Dienste">WhatsApp</label>
+<label class="option"><input type="checkbox" name="services" value="Zahlungsanbieter" data-label="Externe Dienste">Zahlungsanbieter</label>
+<label class="option"><input type="checkbox" name="services" value="Externe Kalender / Widgets" data-label="Externe Dienste">Externe Kalender / Widgets</label>
+</div></fieldset>
+<div class="field"><label>Anbieter, Links oder weitere Dienste</label><textarea name="services_notes" data-label="Weitere externe Dienste / Links"></textarea></div>
+</section>
+
+<section class="section" data-section="SEO-Bestand"><div class="head"><div class="num">8</div><div><h2>SEO-Bestand</h2><p>Nur vorhandene Maßnahmen, Daten und Unterlagen.</p></div></div>
+<div class="grid">
+<div class="field"><label>Wurde bisher aktiv SEO durchgeführt?</label><select name="seo" data-label="Bisherige SEO-Maßnahmen"><option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option><option>Unbekannt</option></select></div>
+<div class="field"><label>Gab / gibt es dafür einen Dienstleister?</label><input name="seo_provider" data-label="SEO-Dienstleister"></div>
+<div class="field full"><label>Gibt es SEO-Berichte, Keyword-Listen oder andere Unterlagen?</label><textarea name="seo_docs" data-label="Vorhandene SEO-Unterlagen"></textarea></div>
+<div class="field full"><label>Wichtige bestehende URLs / Unterseiten</label><textarea name="important_urls" data-label="Wichtige bestehende URLs / Weiterleitungen"></textarea></div>
+</div></section>
+
+<section class="section" data-section="Rechtliche und organisatorische Unterlagen"><div class="head"><div class="num">9</div><div><h2>Rechtliche & organisatorische Unterlagen</h2><p>Bitte vorhandene Unterlagen zusammentragen.</p></div></div>
+<div class="info">Dieses Formular ersetzt keine rechtliche Prüfung. Neue Rechtstexte sollten durch eine dafür qualifizierte Stelle erstellt oder geprüft werden.</div>
+<fieldset><legend>Welche Unterlagen sind vorhanden?</legend><div class="options">
+<label class="option"><input type="checkbox" name="legal" value="Impressum" data-label="Vorhandene rechtliche Unterlagen">Impressum</label>
+<label class="option"><input type="checkbox" name="legal" value="Datenschutzerklärung" data-label="Vorhandene rechtliche Unterlagen">Datenschutzerklärung</label>
+<label class="option"><input type="checkbox" name="legal" value="AGB / Mietbedingungen" data-label="Vorhandene rechtliche Unterlagen">AGB / Mietbedingungen</label>
+<label class="option"><input type="checkbox" name="legal" value="Stornierungsbedingungen" data-label="Vorhandene rechtliche Unterlagen">Stornierungsbedingungen</label>
+<label class="option"><input type="checkbox" name="legal" value="Hausordnung" data-label="Vorhandene rechtliche Unterlagen">Hausordnung</label>
+<label class="option"><input type="checkbox" name="legal" value="Cookie- / Consent-Unterlagen" data-label="Vorhandene rechtliche Unterlagen">Cookie- / Consent-Unterlagen</label>
+</div></fieldset>
+<div class="field"><label>Weitere Unterlagen / Hinweise</label><textarea name="legal_notes" data-label="Weitere rechtliche / organisatorische Unterlagen"></textarea></div>
+</section>
+
+<section class="section" data-section="Projektdateien und Google Drive"><div class="head"><div class="num">10</div><div><h2>Projektdateien & Google Drive</h2><p>Bilder, Unterlagen und Dateien bitte möglichst vollständig hier sammeln.</p></div></div>
+<div class="drive"><div><strong>Biantali – gemeinsamer Projektordner</strong><p>https://drive.google.com/drive/folders/1xj_OLozfzkobxszWYOdTAqPROChv4FMq?usp=sharing</p></div><a class="btn primary" href="https://drive.google.com/drive/folders/1xj_OLozfzkobxszWYOdTAqPROChv4FMq?usp=sharing" target="_blank" rel="noopener">Drive öffnen</a></div>
+<div class="info">Bilder möglichst als Originaldateien hochladen und nicht vorher über WhatsApp oder andere Messenger komprimieren. Bitte Dateien eindeutig nach Wohnung bzw. Bereich zuordnen.</div>
+<fieldset><legend>Was wurde bereits bereitgestellt?</legend><div class="options">
+<label class="option"><input type="checkbox" name="drive" value="Logo / Branding" data-label="Im Drive bereitgestellt">Logo / Branding</label>
+<label class="option"><input type="checkbox" name="drive" value="Außenaufnahmen" data-label="Im Drive bereitgestellt">Außenaufnahmen</label>
+<label class="option"><input type="checkbox" name="drive" value="Bilder aller Ferienwohnungen" data-label="Im Drive bereitgestellt">Bilder aller Ferienwohnungen</label>
+<label class="option"><input type="checkbox" name="drive" value="Gastgeberbilder" data-label="Im Drive bereitgestellt">Gastgeberbilder</label>
+<label class="option"><input type="checkbox" name="drive" value="Umgebungs- / Strandbilder" data-label="Im Drive bereitgestellt">Umgebungs- / Strandbilder</label>
+<label class="option"><input type="checkbox" name="drive" value="Videos" data-label="Im Drive bereitgestellt">Videos</label>
+<label class="option"><input type="checkbox" name="drive" value="Preisinformationen" data-label="Im Drive bereitgestellt">Preisinformationen</label>
+<label class="option"><input type="checkbox" name="drive" value="Buchungsbedingungen" data-label="Im Drive bereitgestellt">Buchungsbedingungen</label>
+<label class="option"><input type="checkbox" name="drive" value="Rechtliche Unterlagen" data-label="Im Drive bereitgestellt">Rechtliche Unterlagen</label>
+<label class="option"><input type="checkbox" name="drive" value="SEO-Unterlagen" data-label="Im Drive bereitgestellt">SEO-Unterlagen</label>
+<label class="option"><input type="checkbox" name="drive" value="Bewertungen / Gästestimmen" data-label="Im Drive bereitgestellt">Bewertungen / Gästestimmen</label>
+<label class="option"><input type="checkbox" name="drive" value="Flyer / Werbemittel" data-label="Im Drive bereitgestellt">Flyer / Werbemittel</label>
+</div></fieldset>
+<div class="grid">
+<div class="field"><label>Status des Projektordners</label><select name="drive_status" data-label="Status Google-Drive-Ordner"><option value="">Bitte auswählen</option><option>Vollständig befüllt</option><option>Teilweise befüllt – weitere Inhalte folgen</option><option>Noch nicht befüllt</option></select></div>
+<div class="field"><label>Wer lädt fehlende Unterlagen hoch?</label><input name="drive_contact" data-label="Verantwortlicher Drive-Uploads"></div>
+<div class="field full"><label>Was fehlt noch / folgt später?</label><textarea name="drive_missing" data-label="Noch fehlende Unterlagen"></textarea></div>
+</div></section>
+
+<section class="section" data-section="Zugänge und sichere Übergabe"><div class="head"><div class="num">11</div><div><h2>Zugänge & sichere Übergabe</h2><p>Keine Zugangsdaten eintragen – nur Verfügbarkeit und Verantwortliche.</p></div></div>
+<fieldset><legend>Für welche Systeme ist grundsätzlich ein Zugang verfügbar?</legend><div class="options">
+<label class="option"><input type="checkbox" name="access" value="Domainverwaltung" data-label="Verfügbare Zugänge">Domainverwaltung</label>
+<label class="option"><input type="checkbox" name="access" value="Hosting" data-label="Verfügbare Zugänge">Hosting</label>
+<label class="option"><input type="checkbox" name="access" value="Website / CMS" data-label="Verfügbare Zugänge">Website / CMS</label>
+<label class="option"><input type="checkbox" name="access" value="Buchungssystem" data-label="Verfügbare Zugänge">Buchungssystem</label>
+<label class="option"><input type="checkbox" name="access" value="Google Unternehmensprofil" data-label="Verfügbare Zugänge">Google Unternehmensprofil</label>
+<label class="option"><input type="checkbox" name="access" value="Google Search Console" data-label="Verfügbare Zugänge">Google Search Console</label>
+<label class="option"><input type="checkbox" name="access" value="Analytics / Tag Manager" data-label="Verfügbare Zugänge">Analytics / Tag Manager</label>
+<label class="option"><input type="checkbox" name="access" value="Buchungsportale" data-label="Verfügbare Zugänge">Buchungsportale</label>
+</div></fieldset>
+<div class="grid">
+<div class="field"><label>Wer kann Zugänge später freigeben?</label><input name="access_contact" data-label="Ansprechpartner Zugangsfrei­gaben"></div>
+<div class="field"><label>Bevorzugte sichere Übergabe</label><select name="access_method" data-label="Sichere Übergabe"><option value="">Bitte auswählen</option><option>Separate Benutzerzugänge / Einladungen</option><option>Passwortmanager</option><option>Abstimmung im Call</option><option>Noch offen</option></select></div>
+<div class="field full"><label>Offene Punkte bei Zugängen</label><textarea name="access_notes" data-label="Offene Punkte Zugänge"></textarea></div>
+</div></section>
+
+<section class="section" data-section="Abschluss und offene technische Punkte"><div class="head"><div class="num">12</div><div><h2>Abschluss & offene Punkte</h2><p>Alles, was vor der Umsetzung noch technisch geklärt werden sollte.</p></div></div>
+<div class="field"><label>Welche technischen Fragen konnten nicht beantwortet werden?</label><textarea name="open_questions" data-label="Offene technische Fragen"></textarea></div>
+<div class="field"><label>Welche bisherigen Dienstleister müssen eventuell kontaktiert werden?</label><textarea name="service_contacts" data-label="Zu kontaktierende Dienstleister"></textarea></div>
+<div class="field"><label>Weitere technische Hinweise</label><textarea name="final_notes" data-label="Weitere technische Hinweise"></textarea></div>
+</section>
+
+<section class="finish">
+<h2>Technisches Onboarding abschließen</h2>
+<p>Die Eingaben werden nur lokal in diesem Browser gespeichert. „PDF erstellen“ öffnet eine strukturierte Text-Druckansicht; anschließend im Browser „Als PDF speichern“ wählen. Zusätzlich kann eine JSON-Datei als maschinenlesbare Projektbasis exportiert werden.</p>
+<div class="actions"><button class="btn secondary" type="button" id="pdf2">PDF erstellen</button><button class="btn secondary" type="button" id="json">JSON sichern</button><button class="btn danger" type="button" id="reset">Lokale Eingaben löschen</button></div>
+<div class="privacy">Diese statische Version sendet keine Formulardaten automatisch an einen Server.</div>
+</section>
+</form>
+<div class="footer">Biantali · Technisches Website-Onboarding · Version 1.0</div>
+</main>
+<div id="print-root"></div>
+
+<script>
+const KEY="biantali-tech-onboarding-v1",form=document.getElementById("form"),DRIVE="https://drive.google.com/drive/folders/1xj_OLozfzkobxszWYOdTAqPROChv4FMq?usp=sharing";
+const controls=()=>[...form.querySelectorAll("input,textarea,select")];
+
+function data(){
+ const d={}; controls().forEach(e=>{const k=e.name||e.id;if(!k)return;if(e.type==="checkbox"){if(!Array.isArray(d[k]))d[k]=[];if(e.checked)d[k].push(e.value)}else if(e.type==="radio"){if(e.checked)d[k]=e.value}else d[k]=e.value}); return d
+}
+function restore(d){controls().forEach(e=>{const k=e.name||e.id;if(!(k in d))return;if(e.type==="checkbox")e.checked=Array.isArray(d[k])&&d[k].includes(e.value);else if(e.type==="radio")e.checked=d[k]===e.value;else e.value=d[k]??""});progress()}
+function save(show=false){localStorage.setItem(KEY,JSON.stringify({savedAt:new Date().toISOString(),data:data()}));if(show){const b=document.getElementById("save"),x=b.textContent;b.textContent="Gespeichert ✓";setTimeout(()=>b.textContent=x,1200)}}
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY)||"null");if(r?.data)restore(r.data)}catch(e){}}
+function progress(){const t=controls().filter(e=>!["checkbox","radio"].includes(e.type)),f=t.filter(e=>String(e.value||"").trim()).length,p=t.length?Math.round(f/t.length*100):0;document.getElementById("pb").style.width=p+"%";document.getElementById("pt").textContent=p+" %"}
+function esc(s){return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+function grouped(sec){const m=new Map();[...sec.querySelectorAll("[data-label]")].forEach(e=>{const l=e.dataset.label;if(!m.has(l))m.set(l,[]);m.get(l).push(e)});return [...m].map(([label,a])=>{let ans="";if(a[0].type==="checkbox")ans=a.filter(e=>e.checked).map(e=>e.value).join(", ");else if(a[0].type==="radio")ans=(a.find(e=>e.checked)||{}).value||"";else ans=a[0].value||"";return{label,answer:String(ans).trim()}})}
+function printView(){
+ const n=new Date(),date=n.toLocaleDateString("de-DE"),time=n.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});let b="";
+ [...form.querySelectorAll(".section")].forEach(s=>{b+=`<section class="ps"><h2>${esc(s.dataset.section)}</h2>`;grouped(s).forEach(i=>{b+=`<div class="pi"><div class="pq">${esc(i.label)}</div><div class="pa${i.answer?"":" empty"}">${esc(i.answer||"Nicht angegeben")}</div></div>`});b+="</section>"});
+ document.getElementById("print-root").innerHTML=`<div class="ph"><h1>BIANTALI – TECHNISCHES ONBOARDING</h1><div class="meta">Projekt: Biantali Website Relaunch<br>Dokumenttyp: Technisches Onboarding<br>Version: 1.0<br>Exportiert am: ${date}, ${time}<br>Google-Drive-Projektordner: ${esc(DRIVE)}</div></div>${b}<div class="pf">Hinweis: Dieses Dokument enthält technische Projektinformationen. Passwörter und geheime Zugangsdaten sollen nicht Bestandteil dieses Dokuments sein.</div>`;
+ document.title="Biantali_Technisches_Onboarding_"+n.toISOString().slice(0,10)
+}
+function pdf(){save();const inv=[...form.querySelectorAll("[required]")].filter(e=>!String(e.value||"").trim());if(inv.length&&!confirm(`Es sind noch ${inv.length} Pflichtfeld(er) leer. PDF trotzdem erstellen?`)){inv[0].focus();return}printView();window.print()}
+function json(){
+ const out={project:"Biantali Website Relaunch",document_type:"Technisches Onboarding",version:"1.0",exported_at:new Date().toISOString(),google_drive_project_folder:DRIVE,answers:{}};
+ [...form.querySelectorAll(".section")].forEach(s=>{out.answers[s.dataset.section]={};grouped(s).forEach(i=>out.answers[s.dataset.section][i.label]=i.answer||null)});
+ const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json;charset=utf-8"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="Biantali_Technisches_Onboarding_"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(u)
+}
+form.addEventListener("input",()=>{progress();save()});form.addEventListener("change",()=>{progress();save()});
+document.getElementById("save").onclick=()=>save(true);document.getElementById("pdf").onclick=pdf;document.getElementById("pdf2").onclick=pdf;document.getElementById("json").onclick=json;
+document.getElementById("reset").onclick=()=>{if(confirm("Wirklich alle lokal gespeicherten Eingaben löschen?")){localStorage.removeItem(KEY);form.reset();form.elements.company.value="Biantali";form.elements.site.value="https://www.biantali.de";form.elements.domain.value="biantali.de";progress()}};
+window.addEventListener("afterprint",()=>document.title="Biantali – Technisches Onboarding");
+load();progress();
+</script>
+</body>
+</html>
